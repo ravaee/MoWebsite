@@ -1,0 +1,45 @@
+body {
+  position: relative;
+}
+
+.navbar img {
+  width: 72px; /* Adjusting size to be more noticeable */
+  height: 72px; /* Keeping the aspect ratio the same */
+  margin: 15px; /* Ensuring some space between the image and the brand name */
+  border: 3px solid #363a3f; /* Adding a white border */
+  border-radius: 50%; /* Ensuring the image remains circular */
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  padding-right: 30px;
+  margin-right: 30px;
+  font-size: x-large;
+  font-weight: bold;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 1000; /* Ensures footer is always at the bottom */
+}
+
+@media (min-width: 992px) {
+  .navbar-brand {
+    margin-right: auto; /* Adjusts for spacing around the name and picture */
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-brand {
+    border-right: none; /* Removes border on smaller screens for a cleaner look */
+    padding-right: 0;
+    margin-right: 0;
+  }
+  .navbar-brand img {
+    width: 50px; /* Adjusts image size back for smaller devices */
+    height: 50px; /* Adjusts image size back for smaller devices */
+  }
+}
