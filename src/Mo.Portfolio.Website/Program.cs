@@ -4,6 +4,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
     .ConfigureAspNetServices()
+    .RegisterApplicationServices()
     .ConfigureDbContext(builder.Configuration);
 
 var app = builder.Build();

@@ -1,0 +1,65 @@
+﻿@page "/admin/posts"
+@model PostList
+
+@{
+    Layout = "_LayoutAdmin";
+}
+<br/>
+<h3>All Posts</h3>
+<small>Total number is @Model.Posts.Count</small>
+<a href="/admin/posts/create" class="btn btn-primary" target="_blank">Create new post</a>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Post Name</th>
+        <th>Post Group</th>
+        <th>Post URL</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var post in Model.Posts)
+    {
+        var groupName = post.Group?.Name ?? "no group";
+        var postUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/posts/{post.Id}";
+
+        <tr>
+            <td>@post.Title</td>
+            <td>@groupName</td>
+            <td>
+                <div style="display: flex; align-items: center; overflow-x: auto;">
+                    <input type="text" value="@postUrl" class="form-control form-control-sm" readonly style="flex-grow: 1; margin-right: 5px;">
+                    <button onclick="copyToClipboard('@postUrl', this)" class="btn btn-secondary btn-sm">Copy</button>
+                </div>
+            </td>
+            <td>
+                <a href="@postUrl" class="btn btn-primary btn-sm" style="margin-left: 5px;" target="_blank">Read</a>
+                
+                <form method="post">
+                    <input type="hidden" name="PostId" value="@post.Id"/>
+                    <button type="submit" class="btn btn-danger" name="action" value="delete">Delete</button>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+@section Scripts
+{
+    <script>
+        function copyToClipboard(text, buttonElement) {
+            // Find the input sibling by using the button's previousElementSibling property
+            var inputElement = buttonElement.previousElementSibling;
+            // Select the text inside the input
+            inputElement.select();
+            inputElement.setSelectionRange(0, 99999); // For mobile devices
+            // Copy the text inside the input to the clipboard
+            navigator.clipboard.writeText(inputElement.value).then(function() {
+                console.log('Copying to clipboard was successful!');
+            }, function(err) {
+                console.error('Could not copy text: ', err);
+            });
+        }
+    </script>
+}

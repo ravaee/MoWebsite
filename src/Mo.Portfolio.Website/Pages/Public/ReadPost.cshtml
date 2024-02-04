@@ -1,0 +1,24 @@
+﻿@page "/posts/{id}"
+@model ReadPostPublicModel
+
+@{
+    Layout = "_Layout";
+}
+<div class="">
+    <div class="row">
+        <div class="col-lg-2 col-md-3 d-none d-md-block left-holder">
+            <div class="left-holder-item">
+                <a href="#" style="color: #c82333;">Group 1</a>
+            </div>
+        </div>
+        <div class="col-lg-10 col-md-9 body-holder">
+            <br/>
+            <h3>@Model.Post.Title</h3>
+            <small>Group: @Model.Post.Group.Name</small>
+            <hr/>
+            <div>
+                @Html.Raw(Model.Post.Body)
+            </div>
+        </div>
+    </div>
+</div>

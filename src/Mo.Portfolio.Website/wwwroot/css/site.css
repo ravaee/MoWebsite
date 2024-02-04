@@ -2,6 +2,50 @@ body {
   position: relative;
 }
 
+.container {
+  min-height: calc(100vh - 62px - 56px); 
+}
+
+.readmore{
+  text-align: center !important;  
+}
+
+.post-holder{
+  background-color: #f8f9fa !important;
+  padding-inline: 30px;
+}
+
+.body-holder{
+  background-color: white !important;
+  padding-inline: 30px;
+}
+
+.left-holder{
+  background-color: #28a74517 !important;
+  padding: 30px;
+  padding-inline: 0;
+}
+
+.left-holder-item{
+  text-align: center;
+  padding: 5px;
+  background-color: #28a74573 !important;
+}
+
+.left-holder-item:hover{
+  background-color: #ffa74573 !important;
+}
+
+.bg-light {
+  background-color: #28a74573 !important;
+}
+
+small{
+  font-family: system-ui;
+  font-weight: 300;
+  font-size: small;
+}
+
 .navbar img {
   width: 72px; /* Adjusting size to be more noticeable */
   height: 72px; /* Keeping the aspect ratio the same */
@@ -20,7 +64,6 @@ body {
 }
 
 .footer {
-  position: fixed;
   bottom: 0;
   width: 100%;
   z-index: 1000; /* Ensures footer is always at the bottom */
@@ -42,4 +85,13 @@ body {
     width: 50px; /* Adjusts image size back for smaller devices */
     height: 50px; /* Adjusts image size back for smaller devices */
   }
+}
+
+.card {
+  transition: transform .2s; /* Animation for card movement */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.card:hover {
+  transform: scale(1.05); /* Slightly enlarge cards on hover */
 }

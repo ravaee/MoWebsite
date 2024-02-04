@@ -1,0 +1,52 @@
+﻿@page "/admin/group"
+@model Mo.Portfolio.Website.Pages.Admin.GroupPage
+
+@{
+    Layout = "_LayoutAdmin";
+}
+
+<h3>Create New Group</h3>
+<hr/>
+<form method="post">
+    <div class="form-group">
+        <label for="groupName">Group Name</label>
+        <input type="text" class="form-control" id="groupName" name="Name" required>
+    </div>
+    <div class="form-group">
+        <label for="groupType">Group Type</label>
+        <select id="groupType" name="GroupType" class="form-control">
+            @foreach (var type in Enum.GetValues(typeof(Mo.Portfolio.Website.Types.GroupType)))
+            {
+                <option value="@type">@type</option>
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary" name="action" value="create">Create Group</button>
+</form>
+
+<h3>Group List</h3>
+<hr/>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Group Name</th>
+        <th>Group Type</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var group in Model.Groups)
+    {
+        <tr>
+            <td>@group.Name</td>
+            <td>@group.GroupType</td>
+            <td>
+                <form method="post">
+                    <input type="hidden" name="GroupId" value="@group.Id"/>
+                    <button type="submit" class="btn btn-danger" name="action" value="delete">Delete</button>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

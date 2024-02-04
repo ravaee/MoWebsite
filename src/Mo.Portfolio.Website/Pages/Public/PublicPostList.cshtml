@@ -1,0 +1,78 @@
+﻿@page "/posts"
+@model PublicPostList
+
+@{
+    Layout = "_Layout";
+}
+
+<div>
+    <div class="row">
+        <!-- Collapsible Sidebar for mobile -->
+        <div class="col-12 d-md-none">
+            <button class="btn btn-primary w-100 mb-3" type="button" data-toggle="collapse" data-target="#sidebar" aria-expanded="false" aria-controls="sidebar">
+                Toggle Groups
+            </button>
+            <div class="collapse" id="sidebar">
+                <div class="list-group">
+                    @foreach (var group in Model.PostViewModel.Select(p => p.Group))
+                    {
+                        <a href="#" class="list-group-item list-group-item-action">@group.Name</a>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Permanent Sidebar for md screens and up -->
+        <div class="col-lg-2 col-md-3 d-none d-md-block left-holder">
+            <div class="list-group sticky-top">
+                    @foreach (var group in Model.PostViewModel.Select(p => p.Group))
+                    {
+                        <a href="#" class="list-group-item">@group.Name</a>
+                    }
+            </div>
+        </div>
+        
+        <div class="col-lg-10 col-md-9 post-holder">
+            @foreach (PostViewModel postModel in Model.PostViewModel)
+            {
+                <br/>
+                <h4>Latest in <b>@postModel.Group.Name</b></h4>
+                <small>@postModel.Group.Summery</small>
+                <hr/>
+                <div class="row">
+                    @foreach (var post in postModel.Posts)
+                    {
+                        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                            <div class="card h-100">
+                                <img src="@post.ImageUrl" class="card-img-top" alt="..." style="object-fit: cover; height: 200px;">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        @post.Title
+                                        <small class="text-muted">@post.CreateDate.ToString("MMMM dd, yyyy")</small>
+                                    </h5>
+                                    <small class="card-text">@Html.Raw(post.Summary)</small>
+                                </div>
+                                <div class="card-footer">
+                                    <a href="posts/@post.Id" class="btn btn-dark">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <br>
+                <p class="readmore text-center">
+                    <a href="#" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">
+                        Read more from <b>@postModel.Group.Name</b> group
+                    </a>
+                </p>
+                <br/>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+
+    </script>
+}

@@ -1,0 +1,15 @@
+﻿@page "/admin/posts/{id}"
+@model ReadPostModel
+
+@{
+    Layout = "_LayoutAdmin";
+}
+<br/>
+<h3>@Model.Post.Title</h3>
+<small>Group: @Model.Post.Group.Name</small>
+<hr />
+<div>
+    @Html.Raw(Model.Post.Body)
+</div>
+<br/>
+

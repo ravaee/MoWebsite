@@ -1,0 +1,37 @@
+﻿@page "/admin/posts/create"
+@model CreatePostModel
+
+@{
+    Layout = "_LayoutAdmin";
+}
+
+<h3>Create New Post</h3>
+<hr />
+<form method="post">
+    <div class="form-group">
+        <label for="articleTitle">Title</label>
+        <input type="text" class="form-control" id="articleTitle" name="Post.Title" required>
+    </div>
+    <div class="form-group">
+        <label for="articleTitle">Group</label>
+        <select id="articleGroup" name="Post.GroupId" class="form-control" required>
+            @foreach (var group in Model.Groups)
+            {
+                <option value="@group.Id">@group.Name</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="articleBody">Body</label>
+        <textarea class="form-control" id="articleBody" name="Post.Body"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Publish</button>
+</form>
+
+@section Scripts {
+    <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('articleBody', {
+        });
+    </script>
+}
